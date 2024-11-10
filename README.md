@@ -3,13 +3,14 @@ Mã sinh viên: 23dh114467
 Sinh viên thực hiện Lê Hoàng Nam  
 
 # Cách chạy chương trình
-## 1. chạy file data trong thư mục Data bằng SQL Server  
-## 2. thay đổi tên server name trong file config  
-## 3. F5 để chạy chương trình  
+1. chạy file data trong thư mục Data bằng SQL Server  
+2. thay đổi tên server name trong file config  
+3. F5 để chạy chương trình  
 
 ## User test
-User: Nam  
-Pass: Abc123  
+user Lê Hoàng Nam
+Username: Nam  
+Password: Abc123  
 
 ## API thanh toán vnpay
 Ngân hàng: NCB  
