@@ -93,6 +93,40 @@ namespace Ecommerce.Areas.Customers.Controllers
             int pageNumber = (page ?? 1);
             return PartialView(ListDanhMucDT.ToPagedList(pageNumber, pageSize));
         }
+
+
+        public ActionResult DienThoaiTheoLoaiSanPham(int? maloaisanpham, int? page)
+        {
+            if (page == null)
+            {
+                page = 1;
+            }
+            ViewBag.MaHangSX = maloaisanpham;
+            var ListDanhMucDT = db.SanPham.Join(db.ChiTietSP,
+                                    SanPham => SanPham.MaSanPham,
+                                    ChiTietSP => ChiTietSP.MaSanPham,
+                                    (SanPham, ChiTietSP) => new HienThiSanPham
+                                    {
+                                        iMaSanPham = SanPham.MaSanPham,
+                                        sTenSanPham = SanPham.TenSanPham,
+                                        sAnhBia = SanPham.AnhBia,
+                                        dGiaBan = ChiTietSP.GiaBan,
+                                        sMoTa = SanPham.ThongTinThemVeSP,
+                                        iMoi = ChiTietSP.Moi,
+                                        iMaHangSX = SanPham.MaHangSX,
+                                        iMaLoaiSP = SanPham.MaLoaiSP,
+                                    }).Where(n => n.iMoi == 1 && n.iMaLoaiSP == maloaisanpham).ToList();
+            int pageSize = 8;
+            int pageNumber = (page ?? 1);
+            return PartialView(ListDanhMucDT.ToPagedList(pageNumber, pageSize));
+        }
+
+        // Danh mục sản phẩm
+        public ActionResult DanhMucSanPhamPartial()
+        {
+            var loaiDanhMuc = db.LoaiSanPham.ToList();
+            return PartialView(loaiDanhMuc);
+        }
         #endregion
 
 
